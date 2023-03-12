@@ -12,6 +12,10 @@ public:
 	ATopDownShmupPlayerController();
 
 protected:
+	float value;
+	FVector actorRotate;
+	void MoveForward(float Value);
+	void MoveRight(float Value);
 	/** True if the controlled character should navigate to the mouse cursor. */
 	uint32 bMoveToMouseCursor : 1;
 
@@ -32,6 +36,11 @@ protected:
 	/** Input handlers for SetDestination action. */
 	void OnSetDestinationPressed();
 	void OnSetDestinationReleased();
+
+	//mouse update
+	void UpdateMouseLook();
+
+	
 };
 
 
