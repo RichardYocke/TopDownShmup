@@ -1,6 +1,7 @@
 // Copyright 1998-2015 Epic Games, Inc. All Rights Reserved.
 #pragma once
 #include "GameFramework/PlayerController.h"
+#include "Weapon.h"
 #include "TopDownShmupPlayerController.generated.h"
 
 UCLASS()
@@ -39,7 +40,7 @@ protected:
 
 	//mouse update
 	void UpdateMouseLook();
-
+	TSubclassOf<AWeapon> WeaponClass;
 	
 };
 
