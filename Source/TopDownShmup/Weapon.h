@@ -26,6 +26,8 @@ public:
 	UPROPERTY(EditDefaultsOnly, Category = Sound)
 		USoundCue* FireFinishSound;
 
+	APawn* MyPawn;
+
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;

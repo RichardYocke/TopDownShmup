@@ -62,6 +62,8 @@ void ATopDownShmupCharacter::BeginPlay()
             }
         }
     }
+	MyWeapon->MyPawn = this;
+
 }
 void ATopDownShmupCharacter::OnStartFire()
 {
