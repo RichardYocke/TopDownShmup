@@ -63,4 +63,18 @@ void ATopDownShmupCharacter::BeginPlay()
         }
     }
 }
+void ATopDownShmupCharacter::OnStartFire()
+{
+	if (MyWeapon)
+	{
+		MyWeapon->OnStartFire();
+	}
+}
 
+void ATopDownShmupCharacter::OnStopFire()
+{
+	if (MyWeapon)
+	{
+		MyWeapon->OnStopFire();
+	}
+}

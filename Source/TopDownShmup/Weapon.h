@@ -4,7 +4,12 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/Actor.h"
+#include "Sound/SoundCue.h"
+#include "Components/AudioComponent.h"
+#include "Kismet/GameplayStatics.h"
+#include "Particles/ParticleSystemComponent.h"
 #include "Weapon.generated.h"
+
 
 UCLASS()
 class TOPDOWNSHMUP_API AWeapon : public AActor
@@ -16,11 +21,23 @@ public:
 	AWeapon();
 	UPROPERTY(VisibleDefaultsOnly, BlueprintReadOnly, Category = Weapon)
 		USkeletalMeshComponent* WeaponMesh;
-
+	UPROPERTY(EditDefaultsOnly, Category = Sound)
+		USoundCue* FireLoopSound;
+	UPROPERTY(EditDefaultsOnly, Category = Sound)
+		USoundCue* FireFinishSound;
 
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
+	UPROPERTY(Transient)
+		UAudioComponent* FireAC;
+	UAudioComponent* PlayWeaponSound(USoundCue* Sound);
+
+	UPROPERTY(EditDefaultsOnly, Category = Effects)
+		UParticleSystem* MuzzleFX;
+
+	UPROPERTY(Transient)
+		UParticleSystemComponent* FireUP;
 
 public:	
 	// Called every frame

@@ -29,6 +29,9 @@ public:
 	UPROPERTY(EditAnywhere, Category = Weapon)
 		TSubclassOf<AWeapon> WeaponClass;
 
+
+	void OnStartFire();
+	void OnStopFire();
 private:
 	AWeapon* MyWeapon;
 

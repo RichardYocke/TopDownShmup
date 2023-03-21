@@ -1,7 +1,6 @@
 // Copyright 1998-2015 Epic Games, Inc. All Rights Reserved.
 #pragma once
 #include "GameFramework/PlayerController.h"
-#include "Weapon.h"
 #include "TopDownShmupPlayerController.generated.h"
 
 UCLASS()
@@ -25,22 +24,21 @@ protected:
 	virtual void SetupInputComponent() override;
 	// End PlayerController interface
 
-	/** Navigate player to the current mouse cursor location. */
-	void MoveToMouseCursor();
-
-	/** Navigate player to the current touch location. */
-	void MoveToTouchLocation(const ETouchIndex::Type FingerIndex, const FVector Location);
 	
-	/** Navigate player to the given world location. */
+	/*
+	 Navigate player to the given world location.
 	void SetNewMoveDestination(const FVector DestLocation);
-
-	/** Input handlers for SetDestination action. */
 	void OnSetDestinationPressed();
 	void OnSetDestinationReleased();
+	void MoveToMouseCursor();
+	void MoveToTouchLocation(const ETouchIndex::Type FingerIndex, const FVector Location);
+	*/
+
+	void OnStartFire();
+	void OnStopFire();
 
 	//mouse update
 	void UpdateMouseLook();
-	TSubclassOf<AWeapon> WeaponClass;
 	
 };
 

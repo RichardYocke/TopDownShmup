@@ -31,12 +31,27 @@ void AWeapon::Tick(float DeltaTime)
 
 void AWeapon::OnStartFire()
 {
-
+	FireAC = PlayWeaponSound(FireLoopSound);
+	FireUP = UGameplayStatics::SpawnEmitterAttached(MuzzleFX, RootComponent, TEXT("MuzzleFlashSocket"));
 }
 
 
 
 void AWeapon::OnStopFire()
 {
+	FireAC->Stop();
+	PlayWeaponSound(FireFinishSound);
+	FireUP->DeactivateSystem();
+	
+}
 
+
+UAudioComponent* AWeapon::PlayWeaponSound(USoundCue* Sound)
+{
+	UAudioComponent* AC = NULL;
+	if (Sound)
+	{
+		AC = UGameplayStatics::SpawnSoundAttached(Sound, RootComponent);
+	}
+	return AC;
 }

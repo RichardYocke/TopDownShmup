@@ -3,6 +3,7 @@
 #include "TopDownShmupPlayerController.h"
 #include "TopDownShmup.h"
 #include "Blueprint/AIBlueprintHelperLibrary.h"
+#include <TopDownShmupCharacter.h>
 
 ATopDownShmupPlayerController::ATopDownShmupPlayerController()
 {
@@ -31,14 +32,22 @@ void ATopDownShmupPlayerController::SetupInputComponent()
 	InputComponent->BindAxis("MoveForward", this, &ATopDownShmupPlayerController::MoveForward);
 	InputComponent->BindAxis("MoveRight", this, &ATopDownShmupPlayerController::MoveRight);
 
-	//InputComponent->BindAction("SetDestination", IE_Pressed, this, &ATopDownShmupPlayerController::OnSetDestinationPressed);
-	//InputComponent->BindAction("SetDestination", IE_Released, this, &ATopDownShmupPlayerController::OnSetDestinationReleased);
 
-	// support touch devices 
-	//InputComponent->BindTouch(EInputEvent::IE_Pressed, this, &ATopDownShmupPlayerController::MoveToTouchLocation);
-	//InputComponent->BindTouch(EInputEvent::IE_Repeat, this, &ATopDownShmupPlayerController::MoveToTouchLocation);
+
+	InputComponent->BindAction("Fire", IE_Pressed, this, &ATopDownShmupPlayerController::OnStartFire);
+	InputComponent->BindAction("Fire", IE_Released, this, &ATopDownShmupPlayerController::OnStopFire);
+	/*
+	 support touch devices 
+	InputComponent->BindTouch(EInputEvent::IE_Pressed, this, &ATopDownShmupPlayerController::MoveToTouchLocation);
+	InputComponent->BindTouch(EInputEvent::IE_Repeat, this, &ATopDownShmupPlayerController::MoveToTouchLocation);
+	
+	*/
 }
 
+
+
+
+/*
 void ATopDownShmupPlayerController::MoveToMouseCursor()
 {
 	// Trace to see what is under the mouse cursor
@@ -93,6 +102,10 @@ void ATopDownShmupPlayerController::OnSetDestinationReleased()
 	bMoveToMouseCursor = false;
 }
 
+
+
+
+*/
 void ATopDownShmupPlayerController::MoveForward(float Value)
 {
 	if (Value != 0.0f)
@@ -140,4 +153,30 @@ void ATopDownShmupPlayerController::UpdateMouseLook()
 
 	}
 }
-/*Changes Are being saved*/
+
+
+
+
+void ATopDownShmupPlayerController::OnStartFire()
+{
+	APawn* const Pawn = GetPawn();
+	if (Pawn)
+	{
+		ATopDownShmupCharacter* MyCharacter = Cast<ATopDownShmupCharacter>(Pawn);
+		MyCharacter->OnStartFire();
+	}
+}
+
+
+
+
+
+void ATopDownShmupPlayerController::OnStopFire()
+{
+	APawn* const Pawn = GetPawn();
+	if (Pawn)
+	{
+		ATopDownShmupCharacter* MyCharacter = Cast<ATopDownShmupCharacter>(Pawn);
+		MyCharacter->OnStopFire();
+	}
+}
