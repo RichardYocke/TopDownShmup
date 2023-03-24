@@ -14,5 +14,10 @@ class TOPDOWNSHMUP_API ADwarfCharacter : public AEnemyCharacter
 {
 	GENERATED_BODY()
 		ADwarfCharacter();
+	void StartAttack();
+	void StopAttack();
+
+	UPROPERTY(EditDefaultsOnly)
+		UAnimMontage* AttackAnim;
 	
 };

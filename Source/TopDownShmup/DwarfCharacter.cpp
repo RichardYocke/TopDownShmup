@@ -8,3 +8,15 @@ ADwarfCharacter::ADwarfCharacter()
 {
 	AIControllerClass = AAIDwarfController::StaticClass();
 }
+
+
+void ADwarfCharacter::StartAttack()
+{
+	
+	PlayAnimMontage(AttackAnim);
+}
+
+void ADwarfCharacter::StopAttack()
+{
+	StopAnimMontage();
+}
