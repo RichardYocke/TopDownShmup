@@ -21,11 +21,13 @@ void AAIDwarfController::Tick(float DeltaTime)
 	if (GetCurrentState() == EDwarfState::EAttacking &&
 		(PlayerActor->GetDistanceTo(MyPawn) > DwarfRange))
 	{
+		GEngine->AddOnScreenDebugMessage(1, 2.f, FColor::Green, FString::Printf(TEXT("chasing")));
+		
 		SetCurrentState(EDwarfState::EChasing);
 	}
-
+	
 }
-
+	
 void AAIDwarfController::MoveDwarf()
 {
 	PlayerActor = UGameplayStatics::GetPlayerPawn(GetWorld(), 0);
@@ -76,13 +78,11 @@ void AAIDwarfController::HandleNewState(EDwarfState NewState)
 		break;
 	case EDwarfState::EAttacking:
 	{
-
-		/*THIS IS THE PART WHERE I AM STUCK*/
-		//DwarfChar.startattack();
+		DwarfChar->StartAttack();
 	}
 		break;
 	case EDwarfState::EDead:
-		break;
+
 	default:
 	case EDwarfState::EUnknown:
 		break;

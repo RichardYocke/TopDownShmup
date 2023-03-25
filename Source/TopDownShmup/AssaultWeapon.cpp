@@ -2,6 +2,7 @@
 
 
 #include "AssaultWeapon.h"
+#include <DwarfCharacter.h>
 
 AAssaultWeapon::AAssaultWeapon()
 {
@@ -46,6 +47,17 @@ void AAssaultWeapon::WeaponTrace()
 		// Did this hit anything? 
 	if (Hit.bBlockingHit) 
 	{ 
-		UGameplayStatics::SpawnEmitterAtLocation(GetWorld(), HitEffect, Hit.ImpactPoint);// TODO: Actually do something 
+		UGameplayStatics::SpawnEmitterAtLocation(GetWorld(), HitEffect, Hit.ImpactPoint);
+		// TODO: get object that is hit
+		ADwarfCharacter* Dwarf = Cast<ADwarfCharacter>(Hit.GetActor());
+		if (Dwarf)
+		{
+			GEngine->AddOnScreenDebugMessage(1, 2.f, FColor::Purple, FString::Printf(TEXT("hit")));
+
+			Dwarf->TakeDamage(damage, FDamageEvent(), GetInstigatorController(), this);
+		}
+
+
+
 	}
 }

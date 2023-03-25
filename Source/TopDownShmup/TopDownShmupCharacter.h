@@ -28,12 +28,14 @@ public:
 	FORCEINLINE class USpringArmComponent* GetCameraBoom() const { return CameraBoom; }
 	UPROPERTY(EditAnywhere, Category = Weapon)
 		TSubclassOf<AWeapon> WeaponClass;
-
+	UPROPERTY(EditAnywhere)
+		float Health = 100.f;
 
 	void OnStartFire();
 	void OnStopFire();
 private:
 	AWeapon* MyWeapon;
+	
 
 };
 

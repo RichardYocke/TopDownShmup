@@ -13,11 +13,17 @@ UCLASS()
 class TOPDOWNSHMUP_API ADwarfCharacter : public AEnemyCharacter
 {
 	GENERATED_BODY()
-		ADwarfCharacter();
+	public:
+	ADwarfCharacter();
 	void StartAttack();
 	void StopAttack();
-
+	virtual float TakeDamage(float Damage, struct FDamageEvent const& DamageEvent,
+		AController* EventInstigator, AActor* DamageCauser) override;
 	UPROPERTY(EditDefaultsOnly)
 		UAnimMontage* AttackAnim;
+	UPROPERTY(EditAnywhere)
+		float Health = 20.f;
+	UPROPERTY(EditAnywhere)
+		float damage = 10.f;
 	
 };

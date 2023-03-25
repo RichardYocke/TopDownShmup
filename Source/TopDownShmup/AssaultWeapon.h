@@ -22,6 +22,8 @@ class TOPDOWNSHMUP_API AAssaultWeapon : public AWeapon
 	
 	UPROPERTY(EditDefaultsOnly)
 		UParticleSystem* HitEffect;
+	UPROPERTY(EditAnywhere)
+		float damage = 2.f;
 	FTimerHandle MemberTimerHandle;
 protected:
 	void WeaponTrace();
