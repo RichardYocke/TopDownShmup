@@ -60,7 +60,7 @@ EDwarfState AAIDwarfController::GetCurrentState() const
 
 void AAIDwarfController::SetCurrentState(EDwarfState NewState)
 {
-	/*Set Current State*/
+	/*Set Current State*/ 
 	CurrentState = NewState;
 	/*Handle the new current state*/
 	HandleNewState(CurrentState);
