@@ -130,6 +130,7 @@ void ATopDownShmupPlayerController::MoveRight(float Value)
 	}
 }
 
+
 void ATopDownShmupPlayerController::UpdateMouseLook()
 {
 	// Trace to see what is under the mouse cursor

@@ -22,7 +22,6 @@ void AAIDwarfController::Tick(float DeltaTime)
 		(PlayerActor->GetDistanceTo(MyPawn) > DwarfRange))
 	{
 		GEngine->AddOnScreenDebugMessage(1, 2.f, FColor::Green, FString::Printf(TEXT("chasing")));
-		
 		SetCurrentState(EDwarfState::EChasing);
 	}
 	
@@ -30,8 +29,12 @@ void AAIDwarfController::Tick(float DeltaTime)
 	
 void AAIDwarfController::MoveDwarf()
 {
-	PlayerActor = UGameplayStatics::GetPlayerPawn(GetWorld(), 0);
-	MoveToActor(PlayerActor, DwarfRange);
+	if (DwarfChar)
+	{
+		DwarfChar->StopAttack();
+		PlayerActor = UGameplayStatics::GetPlayerPawn(GetWorld(), 0);
+		MoveToActor(PlayerActor, 5.0f);
+	}
 }
 
 void AAIDwarfController::OnPossess(APawn* InPawn)
@@ -78,7 +81,11 @@ void AAIDwarfController::HandleNewState(EDwarfState NewState)
 		break;
 	case EDwarfState::EAttacking:
 	{
-		DwarfChar->StartAttack();
+		if (DwarfChar)
+		{
+			DwarfChar->StartAttack();
+		}
+		
 	}
 		break;
 	case EDwarfState::EDead:

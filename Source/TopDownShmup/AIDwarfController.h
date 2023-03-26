@@ -26,7 +26,7 @@ class TOPDOWNSHMUP_API AAIDwarfController : public AAIEnemyController
 	EDwarfState GetCurrentState() const;
 	void SetCurrentState(EDwarfState NewState);
 
-	UPROPERTY(EditAnywhere, Category = "Dwarf Range")
+	UPROPERTY(EditAnywhere)
 		float DwarfRange = 150.0f;
 
 	virtual void OnPossess(APawn* InPawn) override;
