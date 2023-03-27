@@ -118,11 +118,16 @@ float ATopDownShmupCharacter::TakeDamage(float Damage, FDamageEvent const& Damag
 			alive = false;
 			PlayerController = UGameplayStatics::GetPlayerController(GetWorld(), 0);
 			PlayerCharacter = UGameplayStatics::GetPlayerCharacter(GetWorld(), 0);
+			//get skeletalmesh so we can deactivate/freeze it
 			PlayerSkeletalMesh = Cast<USkeletalMeshComponent>(PlayerCharacter->GetComponentByClass(USkeletalMeshComponent::StaticClass()));
 			//we are dead
+			//ignore inputs
+			MyWeapon->OnStopFire();
 			PlayerController->SetIgnoreLookInput(true);
 			PlayerController->SetIgnoreMoveInput(true);
+			//play death anim
 			deathTimer = PlayAnimMontage(DeathAnim);
+			//set timer to a bit before anim actually ends
 			deathTimer -= 0.5f;
 			GetWorldTimerManager().SetTimer(TimerHandle, [this]() {PlayerSkeletalMesh->Deactivate();  }, deathTimer, false);
 

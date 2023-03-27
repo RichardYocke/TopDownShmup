@@ -51,13 +51,18 @@ void ADwarfCharacter::StartAttack()
 	//looping timer
 	 attackLength = PlayAnimMontage(AttackAnim);
 	 
-	 GetWorldTimerManager().SetTimer(attackTimer, [this]() { PlayerActor->TakeDamage(damage, FDamageEvent(), GetInstigatorController(), this); }, attackLength, false);
+	 GetWorldTimerManager().SetTimer(CountdownTimerHandle,
+		 [this]() { PlayerActor->TakeDamage(damage, FDamageEvent(), GetInstigatorController(), this); }
+	 , attackLength, true);
 }
+
+
+
 
 void ADwarfCharacter::StopAttack()
 {
 	
 	StopAnimMontage();
-	GetWorldTimerManager().ClearTimer(TimerHandle);
+	GetWorldTimerManager().ClearTimer(CountdownTimerHandle);
 	
 }

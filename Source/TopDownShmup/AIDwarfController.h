@@ -22,6 +22,7 @@ class TOPDOWNSHMUP_API AAIDwarfController : public AAIEnemyController
 	APawn* MyPawn;
 	APawn* PlayerActor;
 	ADwarfCharacter* DwarfChar;
+		
 
 	EDwarfState GetCurrentState() const;
 	void SetCurrentState(EDwarfState NewState);
@@ -42,6 +43,8 @@ private:
 	void HandleNewState(EDwarfState NewState);
 	void MoveDwarf();
 	APlayerController* PlayerController;
+
+	
 
 
 };

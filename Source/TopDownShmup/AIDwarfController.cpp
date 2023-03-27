@@ -80,12 +80,10 @@ void AAIDwarfController::HandleNewState(EDwarfState NewState)
 	{
 		if (DwarfChar)
 		{
-			//CASE IN CHARACTER IS DEAD
-			//if (PlayerController->IsLookInputIgnored())
+			//if ((PlayerController->IsDead())
 			//{
-				//SetCurrentState(EDwarfState::EChasing);
+				DwarfChar->StartAttack();
 			//}
-			DwarfChar->StartAttack();
 		}
 	}
 		break;
