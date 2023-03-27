@@ -39,10 +39,12 @@ void AWeapon::OnStartFire()
 
 void AWeapon::OnStopFire()
 {
-	FireAC->Stop();
-	PlayWeaponSound(FireFinishSound);
-	FireUP->DeactivateSystem();
-	
+	if (this->FireAC)
+	{
+		FireAC->Stop();
+		PlayWeaponSound(FireFinishSound);
+		FireUP->DeactivateSystem();
+	}
 }
 
 

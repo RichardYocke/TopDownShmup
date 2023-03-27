@@ -73,7 +73,10 @@ void AAIDwarfController::HandleNewState(EDwarfState NewState)
 
 	case EDwarfState::EChasing:
 	{
-		MoveDwarf();
+		if (this)
+		{
+			MoveDwarf();
+		}
 	}
 		break;
 	case EDwarfState::EAttacking:
