@@ -5,6 +5,7 @@
 #include "CoreMinimal.h"
 #include "AIEnemyController.h"
 #include "Kismet/GameplayStatics.h"
+#include "TopDownShmupCharacter.h"
 #include "DwarfCharacter.h"
 #include "AIDwarfController.generated.h"
 
@@ -22,6 +23,7 @@ class TOPDOWNSHMUP_API AAIDwarfController : public AAIEnemyController
 	APawn* MyPawn;
 	APawn* PlayerActor;
 	ADwarfCharacter* DwarfChar;
+	ATopDownShmupCharacter* Player;
 		
 
 	EDwarfState GetCurrentState() const;
@@ -42,7 +44,6 @@ private:
 	/*Handle any function calls that rely on changing the play state of our game*/
 	void HandleNewState(EDwarfState NewState);
 	void MoveDwarf();
-	APlayerController* PlayerController;
 
 	
 

@@ -7,7 +7,7 @@ void AAIDwarfController::BeginPlay()
 	Super::BeginPlay();
 	SetCurrentState(EDwarfState::EStart);
 	MoveDwarf();
-	PlayerController = UGameplayStatics::GetPlayerController(GetWorld(), 0);
+	Player = Cast<ATopDownShmupCharacter>(UGameplayStatics::GetPlayerCharacter(GetWorld(), 0));
 }
 void AAIDwarfController::Tick(float DeltaTime)
 {
@@ -21,6 +21,18 @@ void AAIDwarfController::Tick(float DeltaTime)
 		(PlayerActor->GetDistanceTo(MyPawn) > DwarfRange))
 	{
 		SetCurrentState(EDwarfState::EChasing);
+	}
+	if (Player)
+	{
+		if ((Player->isDead()))
+		{
+			if (GetCurrentState() == EDwarfState::EAttacking)
+			{
+				DwarfChar->StopAttack();
+				SetCurrentState(EDwarfState::EUnknown);
+			}
+			return;
+		}
 	}
 }
 	
@@ -83,10 +95,7 @@ void AAIDwarfController::HandleNewState(EDwarfState NewState)
 	{
 		if (DwarfChar)
 		{
-			//if ((PlayerController->IsDead())
-			//{
 				DwarfChar->StartAttack();
-			//}
 		}
 	}
 		break;

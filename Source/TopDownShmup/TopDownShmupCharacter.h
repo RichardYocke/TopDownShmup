@@ -30,7 +30,7 @@ public:
 	UPROPERTY(EditAnywhere, Category = Weapon)
 		TSubclassOf<AWeapon> WeaponClass;
 	UPROPERTY(EditAnywhere)
-		float Health = 10000.f;
+		float Health = 100.f;
 	UPROPERTY(EditDefaultsOnly)
 		UAnimMontage* DeathAnim;
 	float deathTimer = 0.f;
