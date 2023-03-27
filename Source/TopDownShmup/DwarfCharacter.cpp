@@ -56,8 +56,8 @@ void ADwarfCharacter::StartAttack()
 
 void ADwarfCharacter::StopAttack()
 {
-	if(this){
+	
 	StopAnimMontage();
 	GetWorldTimerManager().ClearTimer(TimerHandle);
-	}
+	
 }
