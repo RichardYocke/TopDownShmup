@@ -30,6 +30,7 @@ float ADwarfCharacter::TakeDamage(float Damage, struct FDamageEvent const& Damag
 			this->UnPossessed();
 			//play death anim
 			deathLength = PlayAnimMontage(DeathAnim);
+			deathLength -= 0.25f;
 			//timer to delay destroy till animation length goes through
 			GetWorldTimerManager().SetTimer(TimerHandle, [this]() { this->Destroy(); }, deathLength, false);
 			
@@ -55,6 +56,8 @@ void ADwarfCharacter::StartAttack()
 
 void ADwarfCharacter::StopAttack()
 {
+	if(this){
 	StopAnimMontage();
 	GetWorldTimerManager().ClearTimer(TimerHandle);
+	}
 }

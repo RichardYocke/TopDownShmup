@@ -117,9 +117,14 @@ float ATopDownShmupCharacter::TakeDamage(float Damage, FDamageEvent const& Damag
 		{
 			alive = false;
 			PlayerController = UGameplayStatics::GetPlayerController(GetWorld(), 0);
+			PlayerCharacter = UGameplayStatics::GetPlayerCharacter(GetWorld(), 0);
+			PlayerSkeletalMesh = Cast<USkeletalMeshComponent>(PlayerCharacter->GetComponentByClass(USkeletalMeshComponent::StaticClass()));
 			//we are dead
 			PlayerController->SetIgnoreLookInput(true);
 			PlayerController->SetIgnoreMoveInput(true);
+			deathTimer = PlayAnimMontage(DeathAnim);
+			deathTimer -= 0.5f;
+			GetWorldTimerManager().SetTimer(TimerHandle, [this]() {PlayerSkeletalMesh->Deactivate();  }, deathTimer, false);
 
 		}
 	}

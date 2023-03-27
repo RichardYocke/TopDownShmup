@@ -31,6 +31,15 @@ public:
 		TSubclassOf<AWeapon> WeaponClass;
 	UPROPERTY(EditAnywhere)
 		float Health = 100.f;
+	UPROPERTY(EditDefaultsOnly)
+		UAnimMontage* DeathAnim;
+	float deathTimer = 0.f;
+	FTimerHandle TimerHandle;
+	USkeletalMeshComponent* PlayerSkeletalMesh;
+	UStaticMeshComponent* PlayerMesh;
+	ACharacter* PlayerCharacter;
+	
+
 	virtual float TakeDamage(float Damage, struct FDamageEvent const& DamageEvent,
 		AController* EventInstigator, AActor* DamageCauser) override;
 	bool alive = true;
