@@ -44,12 +44,17 @@ float ADwarfCharacter::TakeDamage(float Damage, struct FDamageEvent const& Damag
 
 void ADwarfCharacter::StartAttack()
 {
+	PlayerActor = UGameplayStatics::GetPlayerPawn(GetWorld(), 0);
+	
 	//timer = value for the timer
 	//looping timer
 	 attackLength = PlayAnimMontage(AttackAnim);
+	 
+	 GetWorldTimerManager().SetTimer(attackTimer, [this]() { PlayerActor->TakeDamage(damage, FDamageEvent(), GetInstigatorController(), this); }, attackLength, false);
 }
 
 void ADwarfCharacter::StopAttack()
 {
 	StopAnimMontage();
+	GetWorldTimerManager().ClearTimer(TimerHandle);
 }

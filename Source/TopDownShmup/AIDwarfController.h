@@ -41,4 +41,6 @@ private:
 	/*Handle any function calls that rely on changing the play state of our game*/
 	void HandleNewState(EDwarfState NewState);
 	void MoveDwarf();
+	APawn* PlayerActor;
+
 };

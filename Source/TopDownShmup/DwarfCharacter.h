@@ -19,6 +19,8 @@ class TOPDOWNSHMUP_API ADwarfCharacter : public AEnemyCharacter
 	
 	FTimerHandle TimerHandle;
 	FTimerHandle CountdownTimerHandle;
+	FTimerHandle attackTimer;
+	APawn* PlayerActor;
 
 	void StopAttack();
 	virtual float TakeDamage(float Damage, struct FDamageEvent const& DamageEvent,

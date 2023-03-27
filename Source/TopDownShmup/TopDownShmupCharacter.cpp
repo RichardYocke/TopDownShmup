@@ -65,8 +65,15 @@ void ATopDownShmupCharacter::BeginPlay()
 	MyWeapon->MyPawn = this;
 
 }
+
 void ATopDownShmupCharacter::OnStartFire()
 {
+	
+
+	if (this->isDead())
+	{
+		return;
+	}
 	if (MyWeapon)
 	{
 		MyWeapon->OnStartFire();
@@ -75,8 +82,47 @@ void ATopDownShmupCharacter::OnStartFire()
 
 void ATopDownShmupCharacter::OnStopFire()
 {
+	if (this->isDead())
+	{
+		return;
+	}
 	if (MyWeapon)
 	{
 		MyWeapon->OnStopFire();
 	}
 }
+
+bool ATopDownShmupCharacter::isDead()
+{
+	if (alive == false)
+	{
+		return true;
+	}
+	return false;
+}
+
+float ATopDownShmupCharacter::TakeDamage(float Damage, FDamageEvent const& DamageEvent, AController* EventInstigator, AActor* DamageCauser)
+{
+
+	float ActualDamage = Super::TakeDamage(Damage, DamageEvent,
+		EventInstigator, DamageCauser);
+	if (ActualDamage > 0.0f)
+	{
+
+		//Reduce health points
+		Health -= ActualDamage;
+		GEngine->AddOnScreenDebugMessage(2, 4.f, FColor::Blue, FString::Printf(TEXT("health: %f"), Health));
+
+		if (Health <= 0.0f)
+		{
+			alive = false;
+			PlayerController = UGameplayStatics::GetPlayerController(GetWorld(), 0);
+			//we are dead
+			PlayerController->SetIgnoreLookInput(true);
+			PlayerController->SetIgnoreMoveInput(true);
+
+		}
+	}
+	return ActualDamage;
+}
+

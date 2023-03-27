@@ -19,6 +19,7 @@ class ATopDownShmupCharacter : public ACharacter
 	 
 	virtual void BeginPlay() override;
 
+
 public:
 	ATopDownShmupCharacter();
 
@@ -30,11 +31,17 @@ public:
 		TSubclassOf<AWeapon> WeaponClass;
 	UPROPERTY(EditAnywhere)
 		float Health = 100.f;
-
+	virtual float TakeDamage(float Damage, struct FDamageEvent const& DamageEvent,
+		AController* EventInstigator, AActor* DamageCauser) override;
+	bool alive = true;
 	void OnStartFire();
 	void OnStopFire();
+	bool isDead();
+	APlayerController* PlayerController;
 private:
 	AWeapon* MyWeapon;
+	APawn* PlayerActor;
+
 	
 
 };

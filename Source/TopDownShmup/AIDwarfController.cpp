@@ -7,6 +7,9 @@ void AAIDwarfController::BeginPlay()
 	Super::BeginPlay();
 	SetCurrentState(EDwarfState::EStart);
 	MoveDwarf();
+	PlayerActor = UGameplayStatics::GetPlayerPawn(GetWorld(), 0);
+
+
 	
 }
 void AAIDwarfController::Tick(float DeltaTime)
@@ -21,7 +24,7 @@ void AAIDwarfController::Tick(float DeltaTime)
 	if (GetCurrentState() == EDwarfState::EAttacking &&
 		(PlayerActor->GetDistanceTo(MyPawn) > DwarfRange))
 	{
-		GEngine->AddOnScreenDebugMessage(1, 2.f, FColor::Green, FString::Printf(TEXT("chasing")));
+		//GEngine->AddOnScreenDebugMessage(1, 2.f, FColor::Green, FString::Printf(TEXT("chasing")));
 		SetCurrentState(EDwarfState::EChasing);
 	}
 	
@@ -83,6 +86,7 @@ void AAIDwarfController::HandleNewState(EDwarfState NewState)
 	{
 		if (DwarfChar)
 		{
+			
 			DwarfChar->StartAttack();
 		}
 		

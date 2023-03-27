@@ -140,6 +140,11 @@ void ATopDownShmupPlayerController::UpdateMouseLook()
 
 	if (Pawn)
 	{
+		// check on dead
+		if (this->IsLookInputIgnored())
+		{
+			return;
+		}
 		// We hit something, move there
 		//SetNewMoveDestination(Hit.ImpactPoint);
 		GetHitResultUnderCursor(ECC_Visibility, false, Hit);
