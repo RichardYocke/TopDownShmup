@@ -9,6 +9,8 @@ void AAIDwarfController::BeginPlay()
 	MoveDwarf();
 	Player = Cast<ATopDownShmupCharacter>(UGameplayStatics::GetPlayerCharacter(GetWorld(), 0));
 }
+
+
 void AAIDwarfController::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
@@ -107,3 +109,9 @@ void AAIDwarfController::HandleNewState(EDwarfState NewState)
 	}
 }
 
+void AAIDwarfController::OnUnPossess()
+{
+	Super::OnUnPossess();
+	PrimaryActorTick.bCanEverTick = false;
+
+}

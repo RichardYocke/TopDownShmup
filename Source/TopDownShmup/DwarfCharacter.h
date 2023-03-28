@@ -34,12 +34,7 @@ class TOPDOWNSHMUP_API ADwarfCharacter : public AEnemyCharacter
 	UPROPERTY(EditAnywhere)
 		float damage = 10.f;
 
-	//UFUNCTION(BlueprintNativeEvent)
-		// CountdownHasFinished();
-	//virtual void CountdownHasFinished_Implementation();
-	//void AdvanceTimer();
-
 	float attackLength = 0.f;
-	float deathLength = 0.f;
+	float deathLength = 0.f; 
 	
 };

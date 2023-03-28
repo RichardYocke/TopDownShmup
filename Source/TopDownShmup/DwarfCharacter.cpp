@@ -23,17 +23,15 @@ float ADwarfCharacter::TakeDamage(float Damage, struct FDamageEvent const& Damag
 		{
 			// We're dead
 			SetCanBeDamaged(false); // Don't allow further damage
-
 			// Stop attack animation,
 			StopAttack();
-			// UnPossess the AI controller,
-			this->UnPossessed();
 			//play death anim
 			deathLength = PlayAnimMontage(DeathAnim);
 			deathLength -= 0.25f;
 			//timer to delay destroy till animation length goes through
 			GetWorldTimerManager().SetTimer(TimerHandle, [this]() { this->Destroy(); }, deathLength, false);
-			
+			//Destory and UnPossess the AI controller,
+			Destroy();
 			this->RemoveFromRoot();
 			// Remove the dwarf from the world
 			
@@ -46,14 +44,12 @@ float ADwarfCharacter::TakeDamage(float Damage, struct FDamageEvent const& Damag
 void ADwarfCharacter::StartAttack()
 {
 	PlayerActor = UGameplayStatics::GetPlayerPawn(GetWorld(), 0);
-	
-	//timer = value for the timer
 	//looping timer
 	 attackLength = PlayAnimMontage(AttackAnim);
 	 
 	 GetWorldTimerManager().SetTimer(CountdownTimerHandle,
-		 [this]() { PlayerActor->TakeDamage(damage, FDamageEvent(), GetInstigatorController(), this); }
-	 , attackLength, true);
+		 [this]() { PlayerActor->TakeDamage(damage, FDamageEvent(), 
+			 GetInstigatorController(), this); }, attackLength, true);
 }
 
 
@@ -66,3 +62,4 @@ void ADwarfCharacter::StopAttack()
 	GetWorldTimerManager().ClearTimer(CountdownTimerHandle);
 	
 }
+

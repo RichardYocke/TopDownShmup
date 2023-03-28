@@ -37,7 +37,7 @@ class TOPDOWNSHMUP_API AAIDwarfController : public AAIEnemyController
 	virtual void OnMoveCompleted(FAIRequestID RequestID, EPathFollowingResult::Type Result) override;
 
 	virtual void Tick(float DeltaTime) override;
-
+	virtual void OnUnPossess() override;
 private:
 	/*Keeps Track of the current state*/
 	EDwarfState CurrentState;

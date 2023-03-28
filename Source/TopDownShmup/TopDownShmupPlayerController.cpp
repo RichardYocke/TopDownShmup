@@ -16,11 +16,6 @@ void ATopDownShmupPlayerController::PlayerTick(float DeltaTime)
 	Super::PlayerTick(DeltaTime);
 
 		UpdateMouseLook();
-	// keep updating the destination every tick while desired
-	//if (bMoveToMouseCursor)
-	//
-		//MoveToMouseCursor();
-	//}
 }
 
 void ATopDownShmupPlayerController::SetupInputComponent()
@@ -36,76 +31,10 @@ void ATopDownShmupPlayerController::SetupInputComponent()
 
 	InputComponent->BindAction("Fire", IE_Pressed, this, &ATopDownShmupPlayerController::OnStartFire);
 	InputComponent->BindAction("Fire", IE_Released, this, &ATopDownShmupPlayerController::OnStopFire);
-	/*
-	 support touch devices 
-	InputComponent->BindTouch(EInputEvent::IE_Pressed, this, &ATopDownShmupPlayerController::MoveToTouchLocation);
-	InputComponent->BindTouch(EInputEvent::IE_Repeat, this, &ATopDownShmupPlayerController::MoveToTouchLocation);
-	
-	*/
 }
 
 
 
-
-/*
-void ATopDownShmupPlayerController::MoveToMouseCursor()
-{
-	// Trace to see what is under the mouse cursor
-	FHitResult Hit;
-	GetHitResultUnderCursor(ECC_Visibility, false, Hit);
-
-	if (Hit.bBlockingHit)
-	{
-		// We hit something, move there
-		SetNewMoveDestination(Hit.ImpactPoint);
-	}
-}
-
-void ATopDownShmupPlayerController::MoveToTouchLocation(const ETouchIndex::Type FingerIndex, const FVector Location)
-{
-	FVector2D ScreenSpaceLocation(Location);
-
-	// Trace to see what is under the touch location
-	FHitResult HitResult;
-	GetHitResultAtScreenPosition(ScreenSpaceLocation, CurrentClickTraceChannel, true, HitResult);
-	if (HitResult.bBlockingHit)
-	{
-		// We hit something, move there
-		SetNewMoveDestination(HitResult.ImpactPoint);
-	}
-}
-
-void ATopDownShmupPlayerController::SetNewMoveDestination(const FVector DestLocation)
-{
-	APawn* const Pawn = GetPawn();
-	if (Pawn)
-	{
-		float const Distance = FVector::Dist(DestLocation, Pawn->GetActorLocation());
-
-		// We need to issue move command only if far enough in order for walk animation to play correctly
-        if (Distance > 120.0f)
-		{
-            UAIBlueprintHelperLibrary::SimpleMoveToLocation(this, DestLocation);
-		}
-	}
-}
-
-void ATopDownShmupPlayerController::OnSetDestinationPressed()
-{
-	// set flag to keep updating destination until released
-	bMoveToMouseCursor = true;
-}
-
-void ATopDownShmupPlayerController::OnSetDestinationReleased()
-{
-	// clear flag to indicate we should stop updating the destination
-	bMoveToMouseCursor = false;
-}
-
-
-
-
-*/
 void ATopDownShmupPlayerController::MoveForward(float Value)
 {
 	if (Value != 0.0f)
@@ -117,6 +46,8 @@ void ATopDownShmupPlayerController::MoveForward(float Value)
 		}
 	}
 }
+
+
 
 void ATopDownShmupPlayerController::MoveRight(float Value)
 {

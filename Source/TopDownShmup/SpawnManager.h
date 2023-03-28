@@ -18,22 +18,30 @@ public:
 	ASpawnManager();
 	UPROPERTY(EditAnywhere, Category = "Spawn")
 		TArray<ATargetPoint*> spawnPoints;
+
 	UPROPERTY(EditAnywhere, Category = "Spawn")
 		TSubclassOf<ACharacter> currentTarget;
+
 	UPROPERTY(EditAnywhere, Category = "Spawn")
 		float minSpawnTime = 2.0f;
+
 	UPROPERTY(EditAnywhere, Category = "Spawn")
 		float maxSpawnTime = 8.0f;
 
 	float CurrentCount;
+
 	FTimerHandle CountdownTimerHandle;
 
 	UFUNCTION(BlueprintNativeEvent)
 		void CountdownHasFinished();
 	virtual void CountdownHasFinished_Implementation();
+
+
 	void AdvanceTimer();
+
 	UPROPERTY(EditAnywhere, Category = "Spawn")
 		TSubclassOf<ADwarfCharacter> DwarfClass;
+
 	ADwarfCharacter* CurrentDwarf;
 
 protected:
