@@ -115,6 +115,7 @@ float ATopDownShmupCharacter::TakeDamage(float Damage, FDamageEvent const& Damag
 
 		if (Health <= 0.0f)
 		{
+			SetCanBeDamaged(false);
 			alive = false;
 			PlayerController = UGameplayStatics::GetPlayerController(GetWorld(), 0);
 			PlayerCharacter = UGameplayStatics::GetPlayerCharacter(GetWorld(), 0);
