@@ -30,7 +30,7 @@ void AAIDwarfController::Tick(float DeltaTime)
 		{
 			if (GetCurrentState() == EDwarfState::EAttacking)
 			{
-				//DwarfChar->StopAttack();
+				DwarfChar->StopAttack();
 				SetCurrentState(EDwarfState::EUnknown);
 			}
 			return;
@@ -109,7 +109,7 @@ void AAIDwarfController::HandleNewState(EDwarfState NewState)
 	default:
 	case EDwarfState::EUnknown:
 	{
-		//DwarfChar->StopAttack();
+		DwarfChar->StopAttack();
 	}
 		break;
 	}

@@ -65,4 +65,5 @@ void ADwarfCharacter::DestroyAfterAnim()
 {
 	Destroy();
 	this->RemoveFromRoot();
+	GetWorldTimerManager().ClearTimer(CountdownTimerHandle);
 }
