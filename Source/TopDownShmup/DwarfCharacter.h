@@ -36,5 +36,6 @@ class TOPDOWNSHMUP_API ADwarfCharacter : public AEnemyCharacter
 
 	float attackLength = 0.f;
 	float deathLength = 0.f; 
+	void DestroyAfterAnim();
 	
 };

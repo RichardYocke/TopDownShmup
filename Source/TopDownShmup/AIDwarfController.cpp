@@ -30,7 +30,7 @@ void AAIDwarfController::Tick(float DeltaTime)
 		{
 			if (GetCurrentState() == EDwarfState::EAttacking)
 			{
-				DwarfChar->StopAttack();
+				//DwarfChar->StopAttack();
 				SetCurrentState(EDwarfState::EUnknown);
 			}
 			return;
@@ -59,7 +59,10 @@ void AAIDwarfController::OnPossess(APawn* InPawn)
 void AAIDwarfController::OnMoveCompleted(FAIRequestID RequestID, EPathFollowingResult::Type Result)
 {
 	Super::OnMoveCompleted(RequestID, Result);
-	SetCurrentState(EDwarfState::EAttacking);
+	if (!Player->isDead())
+	{
+		SetCurrentState(EDwarfState::EAttacking);
+	}
 	GEngine->AddOnScreenDebugMessage(1, 2.f, FColor::Yellow, FString::Printf(TEXT("move completed")));
 }
 
@@ -105,6 +108,9 @@ void AAIDwarfController::HandleNewState(EDwarfState NewState)
 
 	default:
 	case EDwarfState::EUnknown:
+	{
+		//DwarfChar->StopAttack();
+	}
 		break;
 	}
 }

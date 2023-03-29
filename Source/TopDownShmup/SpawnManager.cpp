@@ -17,7 +17,7 @@ void ASpawnManager::BeginPlay()
 	Super::BeginPlay();
     CurrentCount = FMath::RandRange(minSpawnTime, maxSpawnTime);
 
-    GetWorldTimerManager().SetTimer(CountdownTimerHandle, this, &ASpawnManager::AdvanceTimer, 1.0f, true);
+    //GetWorldTimerManager().SetTimer(CountdownTimerHandle, this, &ASpawnManager::AdvanceTimer, 1.0f, true);
 	
 }
 
